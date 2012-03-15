@@ -38,11 +38,11 @@ then
 fi
 
 case `basename "$0"` in
-  $SVIM_COMMAND_NORMAL | svim)
+  $SVIM_COMMAND_NORMAL | s | svim)
     gvim --servername $name --remote "$@"
     focus $wid
   ;;
-  $SVIM_COMMAND_TAB | stvim)
+  $SVIM_COMMAND_TAB | t | stvim)
     gvim --servername $name --remote-tab "$@"
     focus $wid
   ;;
