@@ -14,8 +14,8 @@ then
   exit
 elif [ $nw = 1 ]
 then
-  wid=${wids[0]}
-  name=`xprop WM_NAME -id $wid | sed 's/.*\-\s\|"$//g'`
+  wid="${wids[0]}"
+  name=`xprop WM_NAME -id "$wid" | sed 's/.*\-\s\|"$//g'`
 elif true
 then
   if [ -n "$SVIM_SELECTOR" ]
@@ -33,18 +33,18 @@ then
 
   select=`echo ${wids[*]} | xargs -d " " -n 1 xprop WM_NAME -id | sed 's/^.* = "\|"$//g' | nl -n ln | $selector`
 
-  wid=${wids[`echo $select | sed 's/\s.*//'`-1]}
+  wid="${wids[`echo $select | sed 's/\s.*//'`-1]}"
   name=`echo $select | sed 's/.*- \|"$//g'`
 fi
 
 case `basename "$0"` in
   $SVIM_COMMAND_NORMAL | s | svim)
-    gvim --servername $name --remote "$@"
-    focus $wid
+    gvim --servername "$name" --remote "$@"
+    focus "$wid"
   ;;
   $SVIM_COMMAND_TAB | t | stvim)
-    gvim --servername $name --remote-tab "$@"
-    focus $wid
+    gvim --servername "$name" --remote-tab "$@"
+    focus "$wid"
   ;;
 esac
 
